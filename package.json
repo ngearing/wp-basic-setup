@@ -13,34 +13,32 @@
     "start": "npm run dev",
     "lint": "stylelint src/styles/; eslint src/scripts/; 2>/dev/null",
     "prettier": "prettier src/**/* --write",
-    "webpack": "NODE_ENV=development webpack --progress --hide-modules --config node_modules/laravel-mix/setup/webpack.config.js",
-    "dev": "NODE_ENV=development webpack --watch --progress --hide-modules --config node_modules/laravel-mix/setup/webpack.config.js",
-    "production": "NODE_ENV=production webpack --progress --hide-modules --config node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "npm run development",
+    "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "precommit": "lint-staged",
     "prepush": "npm run production && git commit --amend --no-edit --no-verify"
   },
   "lint-staged": {
-    "ignore": [
-      "dist/"
+    "*.php": [
+      "phpcbf --standard=WordPress",
+      "git add"
     ],
-    "linters": {
-      "*.php": [
-        "phpcbf --standard=WordPress",
-        "git add"
-      ],
-      "*.{css,scss}": [
-        "prettier --write",
-        "git add"
-      ],
-      "*.js": [
-        "prettier --write",
-        "git add"
-      ]
-    }
+    "*.{css,scss}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "babel": {
     "presets": [
-      "env"
+      "@babel/env"
     ]
   },
   "browserslist": [
@@ -85,25 +83,28 @@
     }
   },
   "devDependencies": {
-    "browser-sync": "^2.24.7",
+    "browser-sync": "^2.26.7",
     "browser-sync-webpack-plugin": "2.0.1",
-    "copy-webpack-plugin": "^4.5.1",
-    "eslint": "^5.4.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^0.14.3",
-    "imagemin-mozjpeg": "^7.0.0",
-    "imagemin-webpack-plugin": "^2.1.1",
-    "laravel-mix": "^2.1.11",
-    "lint-staged": "^7.0.4",
+    "husky": "^3.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "laravel-mix": "^4.1.2",
+    "lint-staged": "^9.2.0",
     "prettier": "^1.10.2",
-    "stylelint": "^9.5.0",
-    "stylelint-config-prettier": "^4.0.0",
-    "stylelint-config-recommended": "^2.0.1",
-    "stylelint-scss": "^3.3.0"
-  }
+    "sass-loader": "7.*",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-scss": "^3.3.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {}
 }
