@@ -1,0 +1,13 @@
+a {
+	color: #000;
+	transition: color 0.3s ease, background 0.3s ease;
+
+	&:visited,
+	&:active {
+		color: #141414;
+	}
+
+	&:hover {
+		color: #282828;
+	}
+}

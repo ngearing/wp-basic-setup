@@ -23,10 +23,6 @@
     "prepush": "npm run production && git commit --amend --no-edit --no-verify"
   },
   "lint-staged": {
-    "*.php": [
-      "phpcbf --standard=WordPress",
-      "git add"
-    ],
     "*.{css,scss}": [
       "prettier --write",
       "git add"
@@ -43,7 +39,6 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
     "ie 11"
   ],
   "eslintConfig": {

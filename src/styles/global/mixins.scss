@@ -1,0 +1,137 @@
+// Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Responsive breakpoints
+@mixin for-phone-only {
+	@media (max-width: 599px) {
+		@content;
+	}
+}
+@mixin for-table-portrait-up {
+	@media (min-width: 600px) {
+		@content;
+	}
+}
+@mixin for-table-landscape-up {
+	@media (min-width: 900px) {
+		@content;
+	}
+}
+@mixin for-desktop-up {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+@mixin for-big-desktop-up {
+	@media (min-width: 1800px) {
+		@content;
+	}
+}
+
+@mixin sub-menu-toggle(
+	$color: black,
+	$bgColor: rgba(255, 255, 255, 0.1),
+	$border: 1px solid $color
+) {
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+	}
+
+	li {
+		display: flex;
+		flex-flow: wrap;
+		border: $border;
+
+		& > ul {
+			width: 100%;
+		}
+
+		& + li {
+			border-top: none;
+		}
+
+		& li {
+			border-left: none;
+			border-right: none;
+		}
+
+		& li:last-child {
+			border-bottom: none;
+		}
+	}
+
+	a {
+		flex: 1;
+		color: $color;
+		display: block;
+		font-size: 1em;
+		line-height: 1.2;
+		padding: 0.75em 1em;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.sub-menu {
+		visibility: hidden;
+		opacity: 0;
+		max-height: 0;
+		transition: all 0.3s ease;
+		background: $bgColor;
+
+		a {
+			font-size: 80%;
+			padding-left: 2em;
+		}
+		ul a {
+			padding-left: 3em;
+		}
+		ul ul a {
+			padding-left: 4em;
+		}
+	}
+	& .sub-menu-open > .sub-menu {
+		visibility: visible;
+		opacity: 1;
+		max-height: 24rem;
+	}
+
+	.sub-menu-toggle {
+		display: block;
+		padding: 0.5em;
+		width: 4em;
+		text-align: center;
+		border: none;
+		border-left: $border;
+		background: none;
+		border-radius: 0;
+		color: $color;
+
+		&:hover,
+		&:focus,
+		&:active {
+			border-left: $border;
+			color: $color;
+		}
+		&::before {
+			content: "\2b";
+		}
+	}
+	& .sub-menu-open > .sub-menu-toggle::before {
+		content: "\2212";
+	}
+}

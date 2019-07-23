@@ -1,0 +1,34 @@
+{
+  "name": "ngearing/wp-basic-setup",
+  "description": "A basic theme for WordPress",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nathan Gearing",
+      "email": "natgearing@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/ngearing/wp-modules"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "ngearing/wp": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wp\\": [
+        "lib/",
+        "app/"
+      ]
+    },
+    "files": [
+      "lib/template-tags.php",
+      "lib/template-functions.php"
+    ]
+  }
+}

@@ -18,9 +18,9 @@ mix
     ],
   })
   .browserSync({
-    serveStatic: ["."],
+    proxy: "",
     injectChanges: true,
-    files: ["dist/**/*", "*.html", "templates/*"],
+    files: ["dist/**/*", "templates/*", "*.php"],
   })
 
 if (mix.inProduction()) {
